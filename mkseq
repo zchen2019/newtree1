@@ -1,0 +1,9 @@
+
+cat MSG_A_family_0815.csv | grep -e "^GeneID" -e "^PN" -e "T5" -e "^R5" -e "^PW" |\
+grep -v "^GeneID" | sed "s/^/>/g" | sed "s/, cont/_cont/g" | sed "s/, not in/_not_in/g" |\
+cut -d ',' -f 1,20 | sed "s/,/\n/g" | sed "s/^_//g" | sed 's/\*$//g' |\
+sed 's/^>\(PNEG_.*$\)/>\1 Pmurina/g' | sed 's/^>\(T552_.*$\)/>\1 Pcarinii/g' |\
+sed 's/^>\(T551_.*$\)/>\1\tPjirovecii/g' | sed 's/^>\(R5.*$\)/>\1;wPcarinii/g' |\
+sed 's/^>\(PW.*$\)/>\1,Pwakefieldiae/g' > seq1.fas
+
+
